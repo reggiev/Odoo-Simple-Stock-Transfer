@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<openerp>
+    <data>
+		
+		<record model="ir.sequence.type" id="seq_type_simple_stock_tranfer_id">
+		    <field name="name">Simple Tranfer ID</field>
+		    <field name="code">simple_transfer</field>
+		</record>
+		
+		<record model="ir.sequence" id="seq_simple_stock_tranfer_id">
+		    <field name="name">Simple Tranfer ID</field>
+		    <field name="code">simple_transfer</field>
+		    <field name="prefix">ST%(year)s</field>
+		    <field name="padding">5</field>
+		</record>
+		
+        <record id="simple_stock_transfer_action" model="ir.actions.act_window">
+            <field name="name">simple_stock_transfer</field>
+            <field name="res_model">simple.stock.transfer</field>
+            <field name="view_mode">tree,form</field>       
+        </record>
+
+        <record id="simple_stock_transfer_tree" model="ir.ui.view">
+            <field name="name">simple_stock_transfer.tree</field>
+            <field name="model">simple.stock.transfer</field>
+            <field name="arch" type="xml">
+                <tree string="simple_stock_transfer">
+                    <field name="partner_id"/>
+				 	<field name="date"/>	
+                    <field name="source_location_id"/>
+                    <field name="destination_location_id"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="simple_stock_transfer_form" model="ir.ui.view">
+            <field name="name">simple_stock_transfer.form</field>
+            <field name="model">simple.stock.transfer</field>
+            <field name="arch" type="xml">
+                <form string="simple_stock_transfer Form" version="7.0">
+                    <header>
+						<button name="check_simple_stock_moves" states="draft,waiting_for_availability" string="Transfer" type="object" class="oe_highlight"/>
+						<button name="cancel" states="draft" string="Cancel" type="object" />
+						 <field name="state" widget="statusbar" />
+                    </header>
+                    <sheet> 
+						<group>
+                        	<group>
+                        	    <field name="partner_id" attrs="{'readonly': [('state','!=','draft')]}" />
+								<field name="move_type" attrs="{'readonly': [('state','!=','draft')]}"/>
+                        	    <field name="source_location_id" attrs="{'readonly': [('state','!=','draft')]}"/>
+								<field name="destination_location_id" attrs="{'readonly': [('state','!=','draft')]}"/>
+                        	</group>
+                        	<group>
+								<field name="name" string="Transfer Code" readonly="1" attrs="{'readonly': [('state','!=','draft')]}"/>
+                        	   <field name="date" attrs="{'readonly': [('state','!=','draft')]}"/>
+							   <field name="source_document" attrs="{'readonly': [('state','!=','draft')]}"/>
+							   
+                        	</group>
+						</group>
+                          <field name="simple_stock_tranfer_line" attrs="{'readonly': [('state','!=','draft')]}">
+                                    <tree editable="top">
+                                        <field name="product_id"/>
+										<field name="quantity"/>
+                                        <field name="transfer_uom" readonly='1'/>
+										<field name="unit_price"/>
+                                        <field name="line_total_price"/>
+                                    </tree>
+                                </field>
+								<field name="remarks" placeholder="Notes"/>
+						
+                    </sheet>
+					<div class="oe_chatter">
+						<field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+						<field name="message_ids" widget="mail_thread"/>
+					</div>
+                </form>
+            </field>
+		</record>
+		
+		 <menuitem id="simple_stock_transfer_action_menu" parent="stock.menu_stock_warehouse_mgmt" action="simple_stock_transfer_action" name="Simple Stock Transfer" sequence="0"/>
+		
+	</data>
+</openerp>
