@@ -16,6 +16,8 @@
         * If available, the stocks are immediately reserved
         * The stock moves are automatically processed and transferred
         
+    If you have questions/concerns, contact me at reggievaldez@outlook.com
+    I am more than happy to assist you.
     
     
 	""",
