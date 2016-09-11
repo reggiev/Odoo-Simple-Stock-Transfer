@@ -1,6 +1,7 @@
 {
 	'name': 'Simple Transfer',
 	'version': '1.0',
+    'images': ['static/description/main_screenshot.png'],
     'category':'Warehouse',
 	'description': """
     
