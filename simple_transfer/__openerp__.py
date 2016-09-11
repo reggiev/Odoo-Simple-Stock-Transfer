@@ -33,6 +33,6 @@
 	'demo': [],
 	'installable': True,
 	'auto_install': False,
-    'price': 29.99,
+    'price': 19.99,
     'currency': 'EUR',
 }
