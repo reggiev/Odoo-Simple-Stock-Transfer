@@ -6,10 +6,10 @@
     
     
     Transfer stocks in Odoo the easiest way:
-        1.) Create an easy transfer form.
-        2.) Specify the source warehouse and destination warehouse.
-        3.) Specify the products and the quantities.
-        4.) Click the transfer button.
+        * Create an easy transfer form.
+        * Specify the source warehouse and destination warehouse.
+        * Specify the products and the quantities.
+        * Click the transfer button.
         
     During the process above the module automatically:
         * Checked the availability of stocks in the source warehouse
